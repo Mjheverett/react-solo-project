@@ -1,0 +1,16 @@
+.header {
+    position: fixed;
+    background-color: grey;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+
+.header-nav {
+    margin: 0;
+    padding: 5px;
+}
