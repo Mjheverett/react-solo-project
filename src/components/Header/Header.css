@@ -10,6 +10,12 @@
 }
 
 .header-nav {
-    margin: 0;
-    padding: 5px;
+    margin-left: 10px;
+    margin-right: 5px;
+    padding: 10px;
+}
+
+.link {
+    color: white;
+    padding: 10px;
 }

@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
 }
 
 .App-header {
@@ -11,4 +12,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.link {
+  padding: 5px;
 }

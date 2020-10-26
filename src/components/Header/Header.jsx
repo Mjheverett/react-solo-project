@@ -1,5 +1,7 @@
 import React from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
+import 'bulma/css/bulma.css';
 
 const Header = () => {
     return (
@@ -11,7 +13,12 @@ const Header = () => {
                 
             </div>
             <div className="header-nav">
-                <h4>Book</h4>
+                <Link to="/" className="link">
+                    Home
+                </Link>
+                <Link to="/booking" className="link">
+                    Booking
+                </Link>
             </div>
         </div>
     )
