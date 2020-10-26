@@ -15,8 +15,18 @@ class Booking extends Component {
         startDate: '',
         endDate: '',
         focusedInput: '',
+        firstName: '',
+        lastName: '',
+        noGuests: 1,
+        message: '',
     }
     
+    _handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
     render() {
 
         return (
@@ -40,14 +50,26 @@ class Booking extends Component {
                         <Field>
                             <Label>First Name</Label>
                             <Control>
-                                <Input type="text" placeholder='Text Input' />
+                                <Input 
+                                    type="text" 
+                                    name="firstName" 
+                                    onChange={this._handleChange.bind(this)} 
+                                    value={this.state.firstName} 
+                                    placeholder='Text Input' 
+                                />
                             </Control>
                         </Field>
 
                         <Field>
                             <Label>Last Name</Label>
                             <Control>
-                                <Input type="text" placeholder='Text Input' />
+                                <Input 
+                                    type="text"
+                                    name="lastName" 
+                                    onChange={this._handleChange.bind(this)} 
+                                    value={this.state.lastName} 
+                                    placeholder='Text Input' 
+                                />
                             </Control>
                         </Field>
 
