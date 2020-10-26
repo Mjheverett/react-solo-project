@@ -1,30 +1,63 @@
 import React, { Component } from 'react';
 
+import firebase from '../../firebase';
+
 import moment from 'moment';
 
 import 'react-dates/initialize';
 import { DateRangePicker, DayPickerRangeController } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
-import { render } from '@testing-library/react';
 
 import 'bulma/css/bulma.css';
 import { Columns, Column, Field, Label, Control, Input, Title, Select, TextArea, Checkbox, Button } from 'bloomer';
 
 class Booking extends Component {
     state = {
-        startDate: '',
-        endDate: '',
-        focusedInput: '',
+        startDate: null,
+        endDate: null,
+        focusedInput: null,
         firstName: '',
         lastName: '',
         noGuests: 1,
         message: '',
+        startDateString: '',
+        endDateString: '',
     }
     
     _handleChange = (e) => {
+        console.log("date", this.state.startDate._d)
         this.setState({
             [e.target.name]: e.target.value
         });
+    }
+
+    _handleSubmit = (e) => {
+        e.preventDefault();
+        const newStartDate = this.state.startDate._d;
+        const newEndDate = this.state.endDate._d;
+        this.setState({
+            startDateString: newStartDate,
+            endDateString: newEndDate,
+        })
+        const bookingRef = firebase.database().ref('booking');
+        const booking = {
+            lastName: this.state.lastName,
+            firstName: this.state.firstName,
+            startDate: this.state.startDateString,
+            endDate: this.state.endDateString,
+            guests: this.state.noGuests,
+            message: this.state.message
+        }
+        bookingRef.push(booking);
+        this.setState({
+            startDate: '',
+            endDate: '',
+            focusedInput: '',
+            firstName: '',
+            lastName: '',
+            noGuests: 1,
+            message: '',
+        })
     }
 
     render() {
@@ -43,9 +76,10 @@ class Booking extends Component {
                         onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                        required={true}
                     />
                     
-                    <form>
+                    <form onSubmit={this._handleSubmit.bind(this)}>
                         <br />
                         <Field>
                             <Label>First Name</Label>
@@ -55,7 +89,8 @@ class Booking extends Component {
                                     name="firstName" 
                                     onChange={this._handleChange.bind(this)} 
                                     value={this.state.firstName} 
-                                    placeholder='Text Input' 
+                                    placeholder='Text Input'
+                                    required={true}
                                 />
                             </Control>
                         </Field>
@@ -68,7 +103,8 @@ class Booking extends Component {
                                     name="lastName" 
                                     onChange={this._handleChange.bind(this)} 
                                     value={this.state.lastName} 
-                                    placeholder='Text Input' 
+                                    placeholder='Text Input'
+                                    required={true}
                                 />
                             </Control>
                         </Field>
@@ -76,13 +112,19 @@ class Booking extends Component {
                         <Field>
                             <Label>Number of Guests:</Label>
                             <Control>
-                                <Select>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
+                                <Select
+                                    name="noGuests"
+                                    onChange={this._handleChange.bind(this)} 
+                                    value={this.state.noGuests}
+                                    required={true}
+                                >
+                                    <option value={1}>1</option>
+                                    <option value="2">2</option>
+                                    <option value={3}>3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    
                                 </Select>
                             </Control>
                         </Field>
@@ -90,7 +132,13 @@ class Booking extends Component {
                         <Field>
                             <Label>Message/Special Instructions</Label>
                             <Control>
-                                <TextArea placeholder={'Message to the Owner...'} />
+                                <TextArea 
+                                    name="message" 
+                                    onChange={this._handleChange.bind(this)} 
+                                    value={this.state.message}
+                                    placeholder={'Message to the Owner...'} 
+                                    required={true}
+                                />
                             </Control>
                         </Field>
 
@@ -103,7 +151,7 @@ class Booking extends Component {
 
                         <Field isGrouped='centered'>
                             <Control>
-                                <Button isLink>Submit</Button>
+                                <Button isLink type="submit">Submit</Button>
                             </Control>
                             <Control>
                                 <Button isColor='danger'>Cancel</Button>
