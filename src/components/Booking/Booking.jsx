@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import firebase from '../../firebase';
 
 import moment from 'moment';
 
 import 'react-dates/initialize';
-import { DateRangePicker, DayPickerRangeController } from 'react-dates';
+import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 import 'bulma/css/bulma.css';
@@ -151,13 +152,15 @@ class Booking extends Component {
 
                         <Field isGrouped='centered'>
                             <Control>
-                                <Button isLink type="submit">Submit</Button>
+                                <Button isLink type="submit">Submit Booking</Button>
                             </Control>
                             <Control>
                                 <Button isColor='danger'>Cancel</Button>
                             </Control>
                         </Field>
                     </form>
+                    <br />
+                    <Link to="/payment">Go to Payment Page</Link>
                 </Column>
             </Columns>
         )
