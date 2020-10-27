@@ -19,14 +19,13 @@ class Booking extends Component {
         focusedInput: null,
         firstName: '',
         lastName: '',
-        noGuests: 1,
+        noGuests: "1",
         message: '',
         startDateString: '',
         endDateString: '',
     }
     
     _handleChange = (e) => {
-        console.log("date", this.state.startDate._d)
         this.setState({
             [e.target.name]: e.target.value
         });
@@ -34,11 +33,11 @@ class Booking extends Component {
 
     _handleSubmit = (e) => {
         e.preventDefault();
-        const newStartDate = this.state.startDate._d;
-        const newEndDate = this.state.endDate._d;
+        const startDateString = this.state.startDate._d;
+        const endDateString = this.state.endDate._d;
         this.setState({
-            startDateString: newStartDate,
-            endDateString: newEndDate,
+            startDateString,
+            endDateString,
         })
         const bookingRef = firebase.database().ref('booking');
         const booking = {
@@ -56,9 +55,13 @@ class Booking extends Component {
             focusedInput: '',
             firstName: '',
             lastName: '',
-            noGuests: 1,
+            noGuests: "1",
             message: '',
         })
+    }
+
+    _dateTest = (startDate, endDate) => {
+        console.log("start, end", startDate, endDate)
     }
 
     render() {
@@ -74,7 +77,7 @@ class Booking extends Component {
                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
                         endDate={this.state.endDate} // momentPropTypes.momentObj or null,
                         endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-                        onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate })} // PropTypes.func.isRequired,
+                        onDatesChange={({ startDate, endDate }) => this._dateTest({ startDate, endDate })} // PropTypes.func.isRequired,
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                         required={true}
@@ -90,7 +93,7 @@ class Booking extends Component {
                                     name="firstName" 
                                     onChange={this._handleChange.bind(this)} 
                                     value={this.state.firstName} 
-                                    placeholder='Text Input'
+                                    placeholder='First Name...'
                                     required={true}
                                 />
                             </Control>
@@ -104,7 +107,7 @@ class Booking extends Component {
                                     name="lastName" 
                                     onChange={this._handleChange.bind(this)} 
                                     value={this.state.lastName} 
-                                    placeholder='Text Input'
+                                    placeholder='Last Name...'
                                     required={true}
                                 />
                             </Control>
@@ -119,9 +122,9 @@ class Booking extends Component {
                                     value={this.state.noGuests}
                                     required={true}
                                 >
-                                    <option value={1}>1</option>
+                                    <option value="1">1</option>
                                     <option value="2">2</option>
-                                    <option value={3}>3</option>
+                                    <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
@@ -138,17 +141,11 @@ class Booking extends Component {
                                     onChange={this._handleChange.bind(this)} 
                                     value={this.state.message}
                                     placeholder={'Message to the Owner...'} 
-                                    required={true}
                                 />
                             </Control>
                         </Field>
 
-                        <Field>
-                            <Label>Terms and Conditions</Label>
-                            <Control>
-                                <Checkbox> I agree </Checkbox>
-                            </Control>
-                        </Field>
+                        {/* // Checkbox for terms */}
 
                         <Field isGrouped='centered'>
                             <Control>
