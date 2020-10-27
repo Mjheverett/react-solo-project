@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase, { auth, provider } from '../../firebase';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import { Button } from 'bloomer'
+import { Button, Title } from 'bloomer'
 import 'bulma/css/bulma.css';
 
 class Header extends Component {
@@ -40,7 +40,7 @@ class Header extends Component {
         return (
             <div className="header">
                 <div className="header-nav">
-                    <h1>Beach Rental</h1>
+                    <Title isSize={2} className="title">Beach Rental</Title>
                 </div>
                 <div className="header-nav">
                     <Link to="/" className="link">

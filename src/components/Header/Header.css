@@ -28,6 +28,10 @@
     color: rgb(0, 162, 255);
 }
 
+.title {
+    color: white;
+}
+
 .user-profile {
     border-radius: 50%;
     height: 60px;
