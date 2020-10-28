@@ -117,7 +117,8 @@ class Booking extends Component {
                             <Control>
                                 <Input 
                                     type="text" 
-                                    name="firstName" 
+                                    name="firstName"
+                                    data-testid="firstName"
                                     onChange={this._handleChange.bind(this)} 
                                     value={this.state.firstName} 
                                     placeholder='First Name...'
@@ -176,7 +177,7 @@ class Booking extends Component {
 
                         <Field isGrouped='centered'>
                             <Control>
-                                <Button isLink type="submit">Submit Booking</Button>
+                                <Button isLink type="submit" data-testid="submitButton">Submit Booking</Button>
                             </Control>
                             <Control>
                                 <Link to="/"><Button isColor='danger'>Cancel</Button></Link>

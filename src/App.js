@@ -60,9 +60,9 @@ class App extends Component {
         <Footer id='footer'>
           <Container>
             <Columns>
-              <Column isFull>
+              <Column>
                 <Content>
-                  <p>Find us on social media:  <a className="footer-link"><Icon className="fab fa-instagram fa-lg"></Icon></a>  <a className="footer-link"><Icon className="fab fa-facebook fa-lg"></Icon></a></p>
+                  <p>Find us on social media:  <a className="footer-link" href="https://instagram.com"><Icon className="fab fa-instagram fa-lg"></Icon></a>  <a className="footer-link" href="https://facebook.com"><Icon className="fab fa-facebook fa-lg"></Icon></a></p>
                 </Content>
                 <p>
                   Made with<Icon hasTextColor="danger" className="fa fa-heart"></Icon> by <a href="https://theoremtechnologies.co" className="footer-link">Theorem Technologies, LLC</a>
