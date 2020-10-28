@@ -21,7 +21,7 @@ const Home = (props) => {
                     {(user !== null) ? 
                         <Link to="/booking"><p>Book your trip now</p></Link>
                         :
-                        <Link to="/login"><p>Log in to book your trip!</p></Link>
+                        <Link to="/login"><p>Log in to book your stay!</p></Link>
                     }
                 </Content>
             </Column>
