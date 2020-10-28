@@ -25,6 +25,7 @@ class Booking extends Component {
         endDateString: null,
         totalAmount: 0,
         nightlyRate: 100,
+        noNights: 0,
     }
     
     _handleChange = (e) => {
@@ -53,20 +54,22 @@ class Booking extends Component {
             lastName: '',
             noGuests: "1",
             message: '',
+            startDateString: null,
+            endDateString: null,
+            totalAmount: 0,
         })
     }
 
     _handleDates = () => {
         
-        if (this.state.startDate == null || this.state.endDate == null) {
-            return
-        }
         setTimeout(() => {
             const startDateString = String(this.state.startDate._d);
             const endDateString = String(this.state.endDate._d);
+            const noNights = (endDateString - startDateString);
             this.setState({
                 startDateString,
                 endDateString,
+                noNights,
             })
         }, 1000);
     }
@@ -92,6 +95,7 @@ class Booking extends Component {
                     />
                     <br />
                     <p>${this.state.nightlyRate}/night</p>
+                    <p>{this.state.noNights}</p>
                     
                     <form onSubmit={this._handleSubmit.bind(this)}>
                         <br />
