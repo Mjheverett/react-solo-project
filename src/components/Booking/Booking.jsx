@@ -10,7 +10,7 @@ import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
 import 'bulma/css/bulma.css';
-import { Columns, Column, Field, Label, Control, Input, Title, Select, TextArea, Checkbox, Button } from 'bloomer';
+import { Columns, Column, Field, Label, Control, Input, Title, Select, TextArea, Button } from 'bloomer';
 
 class Booking extends Component {
     state = {
