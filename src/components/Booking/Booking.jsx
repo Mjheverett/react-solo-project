@@ -33,12 +33,6 @@ class Booking extends Component {
 
     _handleSubmit = (e) => {
         e.preventDefault();
-        const startDateString = this.state.startDate._d;
-        const endDateString = this.state.endDate._d;
-        this.setState({
-            startDateString,
-            endDateString,
-        })
         const bookingRef = firebase.database().ref('booking');
         const booking = {
             lastName: this.state.lastName,
@@ -58,6 +52,18 @@ class Booking extends Component {
             noGuests: "1",
             message: '',
         })
+    }
+
+    _handleDates = () => {
+        console.log("handle dates called");
+        setTimeout(() => {
+            const startDateString = this.state.startDate._d;
+            const endDateString = this.state.endDate._d;
+            this.setState({
+                startDateString,
+                endDateString,
+            })
+        }, 1000);
     }
 
     _dateTest = (startDate, endDate) => {
@@ -81,6 +87,7 @@ class Booking extends Component {
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                         required={true}
+                        onClose={this._handleDates}
                     />
                     
                     <form onSubmit={this._handleSubmit.bind(this)}>
