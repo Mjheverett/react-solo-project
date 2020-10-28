@@ -9,8 +9,9 @@ import 'react-dates/initialize';
 import { DateRangePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
 
+import './Booking.css'
 import 'bulma/css/bulma.css';
-import { Columns, Column, Field, Label, Control, Input, Title, Select, TextArea, Button } from 'bloomer';
+import { Columns, Column, Content, Field, Label, Control, Input, Title, Select, Subtitle, TextArea, Button } from 'bloomer';
 
 class Booking extends Component {
     state = {
@@ -100,9 +101,14 @@ class Booking extends Component {
                         required={true}
                         onClose={this._handleDates}
                     />
+
                     <br />
-                    <p>${this.state.nightlyRate}/night</p>
-                    <p>{this.state.noNights}</p>
+                    <Subtitle isSize={5} className="rate-summary">Rate Summary</Subtitle>
+                    <Content>
+                        <p>Nightly rate: ${this.state.nightlyRate}/night</p>
+                        <p>Number of nights: {this.state.noNights}</p>
+                        <p>Total: ${this.state.totalAmount}</p>
+                    </Content>
                     
                     <form onSubmit={this._handleSubmit.bind(this)}>
                         <br />
