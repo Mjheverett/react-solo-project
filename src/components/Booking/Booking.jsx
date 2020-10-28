@@ -21,8 +21,10 @@ class Booking extends Component {
         lastName: '',
         noGuests: "1",
         message: '',
-        startDateString: '',
-        endDateString: '',
+        startDateString: null,
+        endDateString: null,
+        totalAmount: 0,
+        nightlyRate: 100,
     }
     
     _handleChange = (e) => {
@@ -33,12 +35,6 @@ class Booking extends Component {
 
     _handleSubmit = (e) => {
         e.preventDefault();
-        const startDateString = this.state.startDate._d;
-        const endDateString = this.state.endDate._d;
-        this.setState({
-            startDateString,
-            endDateString,
-        })
         const bookingRef = firebase.database().ref('booking');
         const booking = {
             lastName: this.state.lastName,
@@ -60,8 +56,19 @@ class Booking extends Component {
         })
     }
 
-    _dateTest = (startDate, endDate) => {
-        console.log("start, end", startDate, endDate)
+    _handleDates = () => {
+        
+        if (this.state.startDate == null || this.state.endDate == null) {
+            return
+        }
+        setTimeout(() => {
+            const startDateString = String(this.state.startDate._d);
+            const endDateString = String(this.state.endDate._d);
+            this.setState({
+                startDateString,
+                endDateString,
+            })
+        }, 1000);
     }
 
     render() {
@@ -71,7 +78,7 @@ class Booking extends Component {
                 <Column isSize='1/2'>
                     <br />
                     <Title isSize={4}>Book your stay!</Title>
-        
+
                     <DateRangePicker
                         startDate={this.state.startDate} // momentPropTypes.momentObj or null,
                         startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
@@ -81,7 +88,10 @@ class Booking extends Component {
                         focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
                         onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
                         required={true}
+                        onClose={this._handleDates}
                     />
+                    <br />
+                    <p>${this.state.nightlyRate}/night</p>
                     
                     <form onSubmit={this._handleSubmit.bind(this)}>
                         <br />
