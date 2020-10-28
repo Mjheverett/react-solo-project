@@ -179,7 +179,7 @@ class Booking extends Component {
                                 <Button isLink type="submit">Submit Booking</Button>
                             </Control>
                             <Control>
-                                <Button isColor='danger'>Cancel</Button>
+                                <Link to="/"><Button isColor='danger'>Cancel</Button></Link>
                             </Control>
                         </Field>
                     </form>
