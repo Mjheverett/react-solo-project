@@ -12,7 +12,7 @@ const Home = (props) => {
                 <br />
                 <Title isSize={4}>Clever Beach Condo Name</Title>
                 <Content>
-                    <Image isRatio="4:3" src="https://via.placeholder.com/640x480" alt="beach boardwalk" />
+                    <Image isRatio="4:3" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsecure.instantsoftwareonline.com%2FStayUSA%2FPropertyImages%2F1960%2F5814%2FL17.jpg&f=1&nofb=1" alt="beach boardwalk" />
                 </Content>
                 <Content>
                     <p>Book your stay with us in Gulf Shores, AL. Beach views with quick access to the ocean and 2 pools!</p>
@@ -21,7 +21,7 @@ const Home = (props) => {
                     {(user !== null) ? 
                         <Link to="/booking"><p>Book your trip now</p></Link>
                         :
-                        <p>Log in to book your trip!</p>
+                        <Link to="/login"><p>Log in to book your trip!</p></Link>
                     }
                 </Content>
             </Column>
