@@ -40,7 +40,7 @@ class Header extends Component {
         return (
             <div className="header">
                 <div className="header-nav">
-                    <Title isSize={2} className="title">Beach Rental</Title>
+                    <Title isSize={2} className="navbar-title">Beach Rental</Title>
                 </div>
                 <div className="header-nav">
                     <Link to="/" className="link">
@@ -51,7 +51,7 @@ class Header extends Component {
                     </Link>
                     {this.state.user ?
                         <>
-                            <img src={this.state.user.photoURL} className="user-profile" />
+                            <img src={this.state.user.photoURL} className="user-profile" alt="user profile" />
                             <Button onClick={this.logout.bind(this)}>Log Out</Button>
                         </>
                         :

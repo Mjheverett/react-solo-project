@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase, { auth, provider } from './firebase';
+import firebase, { auth } from './firebase';
 
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -15,8 +15,20 @@ import Payment from './components/Payment/Payment';
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_KEY)
 
 class App extends Component {
+  state = {
+    user: null,
+  };
+
+  componentDidMount() {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.setState({ user });
+      } 
+    });
+  }
 
   render() {
+    const { user } = this.state;
 
     return (
       <div className="App">
@@ -25,7 +37,7 @@ class App extends Component {
             <Header />
             <Switch>
               <Route exact path="/">
-                <Home />
+                <Home user={user}/>
               </Route>
               <Route path="/booking">
                 <Booking />
