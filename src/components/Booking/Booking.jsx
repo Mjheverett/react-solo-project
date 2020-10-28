@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import firebase from '../../firebase';
 
@@ -25,6 +25,8 @@ class Booking extends Component {
         endDateString: null,
         totalAmount: 0,
         nightlyRate: 100,
+        noNights: 0,
+        redirectToReferrer: false,
     }
     
     _handleChange = (e) => {
@@ -53,25 +55,33 @@ class Booking extends Component {
             lastName: '',
             noGuests: "1",
             message: '',
+            startDateString: null,
+            endDateString: null,
+            totalAmount: 0,
+            noNights: 0,
+            redirectToReferrer: true,
         })
     }
 
     _handleDates = () => {
         
-        if (this.state.startDate == null || this.state.endDate == null) {
-            return
-        }
         setTimeout(() => {
             const startDateString = String(this.state.startDate._d);
             const endDateString = String(this.state.endDate._d);
+            const noNights = (endDateString - startDateString);
             this.setState({
                 startDateString,
                 endDateString,
+                noNights,
             })
         }, 1000);
     }
 
     render() {
+        const redirectToReferrer = this.state.redirectToReferrer;
+        if (redirectToReferrer) {
+            return <Redirect to="/payment" />
+        }
 
         return (
             <Columns isCentered>
@@ -92,6 +102,7 @@ class Booking extends Component {
                     />
                     <br />
                     <p>${this.state.nightlyRate}/night</p>
+                    <p>{this.state.noNights}</p>
                     
                     <form onSubmit={this._handleSubmit.bind(this)}>
                         <br />
@@ -167,7 +178,7 @@ class Booking extends Component {
                         </Field>
                     </form>
                     <br />
-                    <Link to="/payment">Go to Payment Page</Link>
+                    <Link to="/payment"><Button isLink type="button">Go to Payment Page</Button></Link>
                 </Column>
             </Columns>
         )
