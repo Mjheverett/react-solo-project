@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 import firebase from '../../firebase';
 
@@ -26,6 +26,7 @@ class Booking extends Component {
         totalAmount: 0,
         nightlyRate: 100,
         noNights: 0,
+        redirectToReferrer: false,
     }
     
     _handleChange = (e) => {
@@ -57,6 +58,8 @@ class Booking extends Component {
             startDateString: null,
             endDateString: null,
             totalAmount: 0,
+            noNights: 0,
+            redirectToReferrer: true,
         })
     }
 
@@ -75,6 +78,10 @@ class Booking extends Component {
     }
 
     render() {
+        const redirectToReferrer = this.state.redirectToReferrer;
+        if (redirectToReferrer) {
+            return <Redirect to="/payment" />
+        }
 
         return (
             <Columns isCentered>
@@ -171,7 +178,7 @@ class Booking extends Component {
                         </Field>
                     </form>
                     <br />
-                    <Link to="/payment">Go to Payment Page</Link>
+                    <Link to="/payment"><Button isLink type="button">Go to Payment Page</Button></Link>
                 </Column>
             </Columns>
         )
