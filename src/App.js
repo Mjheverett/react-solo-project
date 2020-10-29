@@ -11,6 +11,7 @@ import { Footer, Container, Content, Columns, Column, Icon } from 'bloomer';
 import Home from './components/Home/Home';
 import Header from './components/Header/Header';
 import Booking from './components/Booking/Booking';
+import Confirmation from './components/Confirmation/Confirmation';
 import Login from './components/Login/Login';
 import Payment from './components/Payment/Payment';
 
@@ -44,6 +45,9 @@ class App extends Component {
               <Route path="/booking">
                 <Booking />
               </Route>
+              <Route path="/confirm">
+                <Confirmation />
+              </Route>
               <Route path="/login">
                 <Login />
               </Route>
@@ -55,22 +59,22 @@ class App extends Component {
                 <Link to="/">Return to Homepage</Link>
               </Route>
             </Switch>
+            <Footer id='footer'>
+              <Container>
+                <Columns>
+                  <Column>
+                    <Content>
+                      <p>Find us on social media:  <a className="footer-link" href="https://instagram.com"><Icon className="fab fa-instagram fa-lg"></Icon></a>  <a className="footer-link" href="https://facebook.com"><Icon className="fab fa-facebook fa-lg"></Icon></a></p>
+                    </Content>
+                    <p>
+                      Made with<Icon hasTextColor="danger" className="fa fa-heart"></Icon> by <a href="https://theoremtechnologies.co" className="footer-link">Theorem Technologies, LLC</a>
+                    </p>
+                  </Column>
+                </Columns>
+              </Container>
+            </Footer>
           </Elements>
         </Router>
-        <Footer id='footer'>
-          <Container>
-            <Columns>
-              <Column>
-                <Content>
-                  <p>Find us on social media:  <a className="footer-link" href="https://instagram.com"><Icon className="fab fa-instagram fa-lg"></Icon></a>  <a className="footer-link" href="https://facebook.com"><Icon className="fab fa-facebook fa-lg"></Icon></a></p>
-                </Content>
-                <p>
-                  Made with<Icon hasTextColor="danger" className="fa fa-heart"></Icon> by <a href="https://theoremtechnologies.co" className="footer-link">Theorem Technologies, LLC</a>
-                </p>
-              </Column>
-            </Columns>
-          </Container>
-        </Footer>
       </div>
     );
   }

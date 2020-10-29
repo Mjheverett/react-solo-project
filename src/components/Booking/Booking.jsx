@@ -45,7 +45,10 @@ class Booking extends Component {
             startDate: this.state.startDateString,
             endDate: this.state.endDateString,
             guests: this.state.noGuests,
-            message: this.state.message
+            message: this.state.message,
+            totalAmount: this.state.totalAmount,
+            nightlyRate: this.state.nightlyRate,
+            noNights: this.state.noNights
         }
         bookingRef.push(booking);
         this.setState({
@@ -67,13 +70,15 @@ class Booking extends Component {
     _handleDates = () => {
         
         setTimeout(() => {
-            const startDateString = String(this.state.startDate._d);
-            const endDateString = String(this.state.endDate._d);
-            const noNights = (endDateString - startDateString);
+            const startDateString = moment(this.state.startDate._d);
+            const endDateString = moment(this.state.endDate._d);
+            const noNights = endDateString.diff(startDateString, 'days');
+            const totalAmount = noNights * 100;
             this.setState({
-                startDateString,
-                endDateString,
+                startDateString: String(startDateString._d),
+                endDateString: String(endDateString._d),
                 noNights,
+                totalAmount,
             })
         }, 1000);
     }
@@ -81,7 +86,7 @@ class Booking extends Component {
     render() {
         const redirectToReferrer = this.state.redirectToReferrer;
         if (redirectToReferrer) {
-            return <Redirect to="/payment" />
+            return <Redirect to="/confirm" />
         }
 
         return (
@@ -185,7 +190,7 @@ class Booking extends Component {
                         </Field>
                     </form>
                     <br />
-                    <Link to="/payment"><Button isLink type="button">Go to Payment Page</Button></Link>
+                    <Link to="/confirm"><Button isLink type="button">Go to Payment Page</Button></Link>
                 </Column>
             </Columns>
         )
