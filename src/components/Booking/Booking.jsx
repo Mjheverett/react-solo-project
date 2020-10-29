@@ -189,8 +189,6 @@ class Booking extends Component {
                             </Control>
                         </Field>
                     </form>
-                    <br />
-                    <Link to="/confirm"><Button isLink type="button">Go to Payment Page</Button></Link>
                 </Column>
             </Columns>
         )

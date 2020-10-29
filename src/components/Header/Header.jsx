@@ -46,7 +46,7 @@ class Header extends Component {
                     <Link to="/" className="link">
                         Home
                     </Link>
-                    <Link to="/booking" className="link">
+                    <Link to="/booking" className="link" data-testid="bookingButton">
                         Booking
                     </Link>
                     {this.state.user ?
