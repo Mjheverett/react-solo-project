@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { auth } from './firebase';
 
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './App.css';
 import 'bulma/css/bulma.css';
@@ -13,9 +11,6 @@ import Header from './components/Header/Header';
 import Booking from './components/Booking/Booking';
 import Confirmation from './components/Confirmation/Confirmation';
 import Login from './components/Login/Login';
-import Payment from './components/Payment/Payment';
-
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PK_KEY)
 
 class App extends Component {
   state = {
@@ -36,7 +31,7 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Elements stripe={stripePromise}>
+          
             <Header />
             <Switch>
               <Route exact path="/">
@@ -52,7 +47,7 @@ class App extends Component {
                 <Login />
               </Route>
               <Route path="/payment">
-                <Payment />
+                
               </Route>
               <Route path="*">
                 <h2>PAGE NOT FOUND!</h2>
@@ -73,7 +68,7 @@ class App extends Component {
                 </Columns>
               </Container>
             </Footer>
-          </Elements>
+          
         </Router>
       </div>
     );
