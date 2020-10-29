@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase, { auth, provider } from '../../firebase';
+import { auth, provider } from '../../firebase';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { Button, Title } from 'bloomer'

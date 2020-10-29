@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase, { auth } from './firebase';
+import { auth } from './firebase';
 
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
