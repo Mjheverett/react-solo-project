@@ -8,29 +8,29 @@ it('renders page title', () => {
     expect(screen.getByText('Book your stay!')).toBeInTheDocument();
 });
 
-// describe('<Booking />', () => {
-//     let getByTestId;
+describe('<Booking />', () => {
+    let getByTestId;
 
-//     describe('clicking the submit button', () => {
-//         let sendHandler;
+    describe('clicking the submit button', () => {
+        let sendHandler;
         
-//         beforeEach(async () => {
-//             sendHandler = jest.fn().mockName('sendHandler');
-//             ({ getByTestId } = render(<Booking onSend={sendHandler} />));
+        beforeEach(async () => {
+            sendHandler = jest.fn().mockName('sendHandler');
+            ({ getByTestId } = render(<Booking onSend={sendHandler} />));
 
-//             await userEvent.type(
-//                 getByTestId('firstName'),
-//                 'John',
-//             );
-//             userEvent.click(getByTestId('sendButton'));
-//         });
+            await userEvent.type(
+                getByTestId('firstName'),
+                'John',
+            );
+            userEvent.click(getByTestId('sendButton'));
+        });
 
-//         it('clears the first name field', () => {
-//             expect(getByTestId('firstName').value).toEqual('');
-//         });
+        it('clears the first name field', () => {
+            expect(getByTestId('firstName').value).toEqual('');
+        });
 
-//         it('calls the send handler', () => {
-//             expect(sendHandler).toHaveBeenCalledWith('New message');
-//         });
-//     });
-// });
+        it('calls the send handler', () => {
+            expect(sendHandler).toHaveBeenCalledWith('New message');
+        });
+    });
+});
