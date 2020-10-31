@@ -40,7 +40,7 @@ class Header extends Component {
         return (
             <div className="header">
                 <div className="header-nav">
-                    <Title isSize={2} className="navbar-title">Beach Rental</Title>
+                    <Title className="navbar-title">Beach Rental</Title>
                 </div>
                 <div className="header-nav">
                     <Link to="/" className="link">
@@ -52,10 +52,10 @@ class Header extends Component {
                     {this.state.user ?
                         <>
                             <img src={this.state.user.photoURL} className="user-profile" alt="user profile" />
-                            <Button onClick={this.logout.bind(this)}>Log Out</Button>
+                            <Button isSize='small' className="loginButton" onClick={this.logout.bind(this)}>Log Out</Button>
                         </>
                         :
-                        <Button onClick={this.login.bind(this)}>Log In</Button>              
+                        <Button isSize='small' className="loginButton" onClick={this.login.bind(this)}>Log In</Button>              
                     }
                 </div>
             </div>

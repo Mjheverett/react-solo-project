@@ -16,6 +16,7 @@ const Home = (props) => {
                 </Content>
                 <Content>
                     <p>Book your stay with us in Gulf Shores, AL. Beach views with quick access to the ocean and 2 pools!</p>
+                    <p>Accomodations for up to 4 adults plus one bunk. Full kitchen, TV, and balcony.</p>
                 </Content>
                 <Content>
                     {(user !== null) ? 
