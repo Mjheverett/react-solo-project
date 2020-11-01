@@ -10,7 +10,7 @@ const Home = (props) => {
         <Columns isCentered>
             <Column isSize='1/2'>
                 <br />
-                <Title isSize={4}>Clever Beach Condo Name</Title>
+                <Title isSize={4}>A View with A Room</Title>
                 <Content>
                     <Image isRatio="4:3" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsecure.instantsoftwareonline.com%2FStayUSA%2FPropertyImages%2F1960%2F5814%2FL17.jpg&f=1&nofb=1" alt="beach boardwalk" />
                 </Content>
